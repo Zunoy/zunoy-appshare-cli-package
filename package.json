@@ -1,6 +1,6 @@
 {
   "name": "zunoy-appshare-cli",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "cli app for appshare",
   "main": "index.js",
   "bin": {
