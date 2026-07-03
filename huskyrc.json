@@ -1,0 +1,5 @@
+{
+  "hooks": {
+    "pre-commit": "node scripts/update-version-from-tag.js"
+  }
+}
