@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/Zunoy/zunoy-appshare-cli#readme",
   "dependencies": {
-    "go-npm": "^0.1.9"
+    "go-npm-next": "^1.1.0"
   },
   "goBinary": {
     "name": "appshare",
