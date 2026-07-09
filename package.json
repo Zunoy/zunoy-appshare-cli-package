@@ -1,14 +1,13 @@
 {
   "name": "zunoy-appshare-cli",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "cli app for appshare",
   "main": "index.js",
   "bin": {
     "appshare": "bin/appshare"
   },
   "scripts": {
-    "postinstall": "node node_modules/go-npm-next/dist/index.js install",
-    "preuninstall": "node node_modules/go-npm-next/dist/index.js uninstall",
+    "postinstall": "node scripts/postinstall.js",
     "prepare": "husky install",
     "update-version": "node scripts/update-version-from-tag.js"
   },
