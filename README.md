@@ -35,6 +35,14 @@ appshare ./build/app-release.ipa
 
 The CLI will automatically detect that it is running in a non-interactive terminal (headless mode) and upload the file silently, outputting the final shareable URL and exiting with a success/failure code.
 
+### 3. Associating an Upload with an App
+
+Pass `--app-id` to associate the upload with a specific app. It works in both interactive and headless mode, and is optional.
+
+```bash
+appshare ./build/app-release.apk --app-id my-app-slug
+```
+
 ## Available Commands
 
 ```bash
