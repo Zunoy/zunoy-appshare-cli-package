@@ -1,6 +1,6 @@
 {
   "name": "zunoy-appshare-cli",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "cli app for appshare",
   "main": "index.js",
   "bin": {
@@ -31,7 +31,7 @@
   },
   "goBinary": {
     "name": "appshare",
-    "path": "./bin",
+    "path": "./bin/dist",
     "url": "https://github.com/Zunoy/zunoy-appshare-cli/releases/download/v{{version}}/zunoy-appshare-cli_{{platform}}_{{arch}}.tar.gz"
   },
   "devDependencies": {

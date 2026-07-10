@@ -1,7 +1,30 @@
-#!/bin/sh
-# Placeholder committed to git so `npm publish`/`bin` resolution always finds a
-# file here. The real platform binary is downloaded into this path by the
-# postinstall script (node_modules/go-npm-next) and overwrites this file.
-echo "appshare: the platform binary was not installed correctly." >&2
-echo "Try reinstalling: npm install -g zunoy-appshare-cli" >&2
-exit 1
+#!/usr/bin/env node
+// Permanent JS launcher committed to git so `npm publish`/`bin` resolution
+// always finds a file here, on every platform, forever. It never gets
+// overwritten by postinstall - it just execs the real platform binary,
+// which go-npm-next downloads into bin/dist/ (see package.json goBinary.path).
+// A raw shell/binary placeholder in this spot used to break on Windows: npm
+// generates its .cmd/.ps1 shim from this file's shebang at bin-link time
+// (before postinstall runs), and a `#!/bin/sh` shebang there produced a
+// shim that tried to run a nonexistent `sh.exe`.
+"use strict";
+
+const path = require("path");
+const { spawnSync } = require("child_process");
+
+const binName = "appshare" + (process.platform === "win32" ? ".exe" : "");
+const binPath = path.join(__dirname, "dist", binName);
+
+const result = spawnSync(binPath, process.argv.slice(2), { stdio: "inherit" });
+
+if (result.error) {
+  if (result.error.code === "ENOENT") {
+    console.error(`appshare: platform binary not found at ${binPath}.`);
+    console.error("Try reinstalling: npm install -g zunoy-appshare-cli");
+  } else {
+    console.error(`appshare: failed to launch platform binary: ${result.error.message}`);
+  }
+  process.exit(1);
+}
+
+process.exit(result.status === null ? 1 : result.status);
